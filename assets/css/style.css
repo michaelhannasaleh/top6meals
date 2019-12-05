@@ -1,0 +1,46 @@
+/* #body{ min-height: 100vh;
+
+} */
+
+.container-drink {
+     position: relative;
+     width: 200px;
+     margin: 30px 20px 20px 30px;
+   }
+   
+   .image {
+     display: block;
+     width: 100%;
+     height: auto;
+   }
+   
+   .overlay {
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     height: 100%;
+     width: 100%;
+     opacity: 0;
+     transition: .5s ease;
+     background-color:darkcyan;
+   }
+   
+   .container-drink:hover .overlay {
+     opacity: 1;
+   }
+   
+   .text {
+     color: white;
+     font-size: 20px;
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     -webkit-transform: translate(-50%, -50%); /* IE 9 */
+     -ms-transform: translate(-50%, -50%); /* Safari 3-8 */
+     transform: translate(-50%, -50%);
+     text-align: center;
+   }
+
+  
