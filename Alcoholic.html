@@ -14,7 +14,7 @@
 
 <body>
   <div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: dimgrey;">
       <a class="navbar-brand" href="#">DrinkUp!</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,9 +51,8 @@
       </div>
     </nav>
 
-    <div class="container-fluid bg-light" id="body">
-
-      <div class="row justify-content-md-center">
+    <div class="container mt5">
+      <div class="row d-flex justify-content-md-center" id="randomBeverageCard">
         <div class="card text-center">
           <div class="card-header">
             Click below for your random Alcoholic Beverage!
@@ -62,18 +61,32 @@
             <h5 class="card-title">Lets get Started!</h5>
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBqq904CiLWTYTF3ZLSHoztJNr-GK8U9Z6I4h4n8Po1CzCLH7Ggw&s"
-              class="mr-3" alt="...">
+              class="mr-3" alt="Alcoholic Drinks">
 
             <p class="card-text"></p>
-            <a href="#" class="btn btn-primary">Get your Drink!</a>
-          </div>
-          <div class="card-footer text-muted">
-
+            <a href="#" id="getRandomBeverage" class="btn btn-primary">Get your Drink!</a>
           </div>
         </div>
+        <div class="containerDetail" style="display:none">
+            <img src="#" alt="Drink Image" class="image2">
+            <div class="overlay2">
+              <div class="text2">Hello World</div>
+            </div>
+            <h3 class="drinkName">Drink Name</h3>
+        </div>
       </div>
-
     </div>
+  </div>
+
+    <!-- <br><br>
+    <div id="searchDiv"> -->
+      <!-- <div class="container-drink">
+        <img src="./assets/img/t0iugg1509556712.jpg" alt="drink" class="image ">
+        <div class="overlay">
+          <div class="text">Hello World</div>
+        </div>
+      </div> -->
+    <!-- </div> -->
 
     <footer class="w3-center w3-black w3-padding-16 footer fixed-bottom">
       <p> <a href="https://twitter.com/drunkasspeter/status/476917576417546241" title="W3.CSS" target="_blank"
@@ -89,7 +102,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
-      <script type="text/javascript" src="./assets/js/script.js"></script>
+      <script type="text/javascript" src="./assets/js/alcoholic.js"></script>
 
 </body>
 
