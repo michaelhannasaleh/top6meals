@@ -47,15 +47,19 @@ $(document).ready(function () {
      function displayDrinkInfo(){
           var selectedDrink = $(this).attr("data-name");
           alert(selectedDrink);
-        //var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+     }
+});
+    
+
+   //var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
      //    $.ajax({
      //      url: queryURL,
      //      method: "GET"
      //    }).then(function(response) {
      //    });
-     }
-});
-    
+
+
+
      // var settings = {
      //      "async": true,
      //      "crossDomain": true,
@@ -70,8 +74,6 @@ $(document).ready(function () {
      // $.ajax(settings).done(function (response) {
      //      console.log(response);
      // });
-
-    
 
      //https://www.thecocktaildb.com/drink.php?c=12758
 
