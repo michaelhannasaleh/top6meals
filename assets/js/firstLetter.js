@@ -31,8 +31,68 @@ $(document).ready(function () {
                     c.addClass("overlay");
                     var d = $("<div>");
                     d.addClass("text");
-                    d.text(response.drinks[i].strDrink);
+                    var heart = $("<input>");
+                    heart.addClass("addFavorite2");
+                    heart.attr({"src":"./assets/img/heartPlus.png", "type":"image"});
+                    
+                    var details = "<b>" + response.drinks[i].strDrink + "</b>" + "<br>"; 
+                    details += "<b>Category: </b>" + response.drinks[i].strCategory + "<br>"; 
+                    details += "<b>Drink type: </b>" + response.drinks[i].strAlcoholic + "<br>";
+                    details += "<b>Instructions: </b>" + response.drinks[i].strInstructions + "<br>";
+                    details += "<b>Ingredients: </b>" + "<br>";
+                    if (response.drinks[i].strIngredient1 !== null) {
+                         details += response.drinks[i].strIngredient1 + " ";
+                         if(response.drinks[i].strMeasure1 !== null) {
+                              details += response.drinks[i].strMeasure1 + "<br>";
+                         }else{details += "<br>"}
+                    };
+                    if (response.drinks[i].strIngredient2 !== null) {
+                         details += response.drinks[i].strIngredient2 + " ";
+                         if(response.drinks[i].strMeasure2 !== null) {
+                              details += response.drinks[i].strMeasure2 + "<br>";
+                         }else{details += "<br>"}    
+                    };
+                    if (response.drinks[i].strIngredient3 !== null) {
+                         details += response.drinks[i].strIngredient3 + " ";
+                         if(response.drinks[i].strMeasure3 !== null) {
+                              details += response.drinks[i].strMeasure3 + "<br>";
+                         }else{details += "<br>"}
+                    };
+                    if (response.drinks[i].strIngredient4 !== null) {
+                         details += response.drinks[i].strIngredient4 + " ";
+                         if(response.drinks[i].strMeasure4 !== null) {
+                              details += response.drinks[i].strMeasure4 + "<br>";
+                         }else{details += "<br>"}
+                    };
+                    if (response.drinks[i].strIngredient5 !== null) {
+                         details += response.drinks[i].strIngredient5 + " ";
+                         if(response.drinks[i].strMeasure5 !== null) {
+                              details += response.drinks[i].strMeasure5 + "<br>";
+                         }else{details += "<br>"}
+                    };
+                    if (response.drinks[i].strIngredient6 !== null) {
+                         details += response.drinks[i].strIngredient6 + " ";
+                         if(response.drinks[i].strMeasure6 !== null) {
+                              details += response.drinks[i].strMeasure6 + "<br>";
+                         }else{details += "<br>"}
+                    };
+                    if (response.drinks[i].strIngredient7 !== null) {
+                         details += response.drinks[i].strIngredient7 + " ";
+                         if(response.drinks[i].strMeasure7 !== null) {
+                              details += response.drinks[i].strMeasure7 + "<br>";
+                         }else{details += "<br>"}
+                    };
+                    if (response.drinks[i].strIngredient8 !== null) {
+                         details += response.drinks[i].strIngredient8 + " ";
+                         if(response.drinks[i].strMeasure8 !== null) {
+                              details += response.drinks[i].strMeasure8 + "<br>";
+                         }else{details += "<br>"}
+                    };
+
+                    d.html(details);
+
                     a.append(b);
+                    c.append(heart);
                     c.append(d);
                     a.append(c);
                     $("#searchDiv").append(a);
