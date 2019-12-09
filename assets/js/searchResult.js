@@ -6,8 +6,10 @@ $(document).ready(function () {
      $("#searchBtn").on("click", function (){
           event.preventDefault();
           var searchInput = $("#searchInput").val();
-          sessionStorage.setItem("search", searchInput);
-          init();
+          if (searchInput !== "") {
+               sessionStorage.setItem("search", searchInput);
+               init();
+          }
       });
 
       $(document).on("click", ".addFavorite2", toAddFavorites);
@@ -26,7 +28,7 @@ $(document).ready(function () {
           } else if (iconType === "minus"){
                if (favoritesArray.includes(addingFavorite)){
                     console.log(favoritesArray.indexOf(addingFavorite));
-                    favoritesArray.splice( favoritesArray.indexOf("addingFavorite"), 1 );
+                    favoritesArray.splice( favoritesArray.indexOf(addingFavorite), 1 );
                     console.log("saved array : " + favoritesArray);
                     localStorage.setItem("favorites", favoritesArray);
                     $(this).attr({"src": "./assets/img/heartPlus.png",
@@ -41,7 +43,6 @@ $(document).ready(function () {
                favoritesArray = localStorage.getItem("favorites").split(",");
           };
           var searchInput = sessionStorage.getItem("search");
-          console.log(searchInput);
           var queryURL = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchInput}`;
           console.log(queryURL);
           $.ajax({
@@ -63,8 +64,13 @@ $(document).ready(function () {
                     d.addClass("text");
                     var heart = $("<input>");
                     heart.addClass("addFavorite2");
-                    heart.attr({"src":"./assets/img/heartPlus.png", "type":"image"});
-                    heart.attr({"data-name": response.drinks[i].idDrink, "data-icon": "plus"});
+                    if (favoritesArray.includes(response.drinks[i].idDrink)){
+                         heart.attr({"src":"./assets/img/heartMinus.png", "type":"image"});
+                         heart.attr({"data-name": response.drinks[i].idDrink, "data-icon": "minus"});
+                    }else{
+                         heart.attr({"src":"./assets/img/heartPlus.png", "type":"image"});
+                         heart.attr({"data-name": response.drinks[i].idDrink, "data-icon": "plus"});
+                    } 
                     var details = "<b>" + response.drinks[i].strDrink + "</b>" + "<br>"; 
                     details += "<b>Category: </b>" + response.drinks[i].strCategory + "<br>"; 
                     details += "<b>Drink type: </b>" + response.drinks[i].strAlcoholic + "<br>";

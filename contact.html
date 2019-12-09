@@ -15,6 +15,7 @@
 <body>
   <div class="container-fluid">
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+      <img class="cocktailImg" src="./assets/img/cocktail32.png">
       <a class="navbar-brand" href="#">DrinkUp!</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +39,7 @@
               <a class="dropdown-item" href="Alcoholic.html">Alcoholic Drinks</a>
               <a class="dropdown-item" href="Non-Alcoholic.html">Non Alcoholic Drinks</a>
               <a class="dropdown-item" href="popular.html">Popular Cocktails</a>
-              <a class="dropdown-item" href="firstLetter.html">List by First Letter</a>
+              <a class="dropdown-item" href="firstLetter.html">List Cocktails by First Letter</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="favorites.html">Drinker's Favorites</a>
             </div>
@@ -48,42 +49,45 @@
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+          <button class="btn btn-success my-2 my-sm-0" type="submit" disabled="true">Search</button>
         </form>
       </div>
     </nav>
-    
+
     <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
     <div class="w3-container">
- 
-        <div id="id01" class="w3-modal">
-          <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
-      
-            <div class="w3-center"><br>
-              <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+
+      <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
+
+          <div class="w3-center"><br>
+            <span onclick="document.getElementById('id01').style.display='none'"
+              class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">&times;</span>
+          </div>
+
+          <div class="w3-container">
+            <div class="w3-section">
+              <label><b>Your Name</b></label>
+              <input id="userName" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username"
+                name="usrname" required>
+              <label><b>Email</b></label>
+              <input id="email" class="w3-input w3-border" type="email" placeholder="Email" name="email" required>
+              <label><b>Subject</b></label>
+              <textarea id="subject" class="w3-input w3-border" id="subject" name="subject" placeholder="Whats up?"
+                style="height:200px" required></textarea>
+              <button id="submitBtn" class="w3-button w3-block w3-green w3-section w3-padding">Submit</button>
             </div>
-      
-            <div class="w3-container">
-              <div class="w3-section">
-                <label><b>Your Name</b></label>
-                <input id="userName" class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="usrname" required>
-                <label><b>Email</b></label>
-                <input id="email" class="w3-input w3-border" type="email" placeholder="Email" name="email" required>
-                <label><b>Subject</b></label>
-                <textarea id="subject" class="w3-input w3-border" id="subject" name="subject" placeholder="Whats up?" style="height:200px" required></textarea>
-                <button id="submitBtn" class="w3-button w3-block w3-green w3-section w3-padding">Submit</button>
-              </div>
-              <p id="message" style="display:block"></p>
-            </div>
+            <p id="message" style="display:block"></p>
           </div>
         </div>
       </div>
-      <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+    </div>
+    <!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
 
-      <footer class="w3-center w3-black w3-padding-16 footer fixed-bottom">
-        <p> <a href="https://twitter.com/drunkasspeter/status/476917576417546241" title="W3.CSS" target="_blank"
-            class="w3-hover-text-green">Are You Drunk Yet?</a></p>
-      </footer>
+    <footer class="w3-center w3-black w3-padding-16 footer fixed-bottom">
+      <p> <a href="https://twitter.com/drunkasspeter/status/476917576417546241" title="W3.CSS" target="_blank"
+          class="w3-hover-text-green">Are You Drunk Yet?</a></p>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

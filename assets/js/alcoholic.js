@@ -1,19 +1,18 @@
 $(document).ready(function () {
 
-     var favorites = [];
+     var favoritesArray = [];
      init();
 
      function init(){
           if (localStorage.getItem("favorites")){
-               favorites = localStorage.getItem("favorites").split(",");;
+               favoritesArray = localStorage.getItem("favorites").split(",");;
           }  
      }
      
      $("#searchBtn").on("click", function () {
           event.preventDefault();
           var searchInput = $("#searchInput").val();
-          console.log(searchInput);
-          if (searchInput.val() !== null) {
+          if (searchInput !== "") {
                sessionStorage.setItem("search", searchInput);
                window.location = "./searchResult.html";
           }
@@ -33,7 +32,7 @@ $(document).ready(function () {
           } else if (iconType === "minus"){
                if (favoritesArray.includes(addingFavorite)){
                     console.log(favoritesArray.indexOf(addingFavorite));
-                    favoritesArray.splice( favoritesArray.indexOf("addingFavorite"), 1 );
+                    favoritesArray.splice( favoritesArray.indexOf(addingFavorite), 1 );
                     console.log("saved array : " + favoritesArray);
                     localStorage.setItem("favorites", favoritesArray);
                     $(this).attr({"src": "./assets/img/heartPlus.png",
@@ -66,9 +65,15 @@ $(document).ready(function () {
                }).then(function (response) {
                     $(".image2").attr("src", response.drinks[0].strDrinkThumb);;
                     $(".drinkName").text(response.drinks[0].strDrink);
-                    $(".addFavorite").attr({"src": "./assets/img/heartPlus.png",
-                                    "data-name": response.drinks[0].idDrink,
-                                    "data-icon": "plus"});
+                    if (favoritesArray.includes(response.drinks[0].idDrink)){
+                         $(".addFavorite").attr({"src":"./assets/img/heartMinus.png",
+                                         "data-name": response.drinks[0].idDrink,
+                                         "data-icon": "minus"});
+                    }else{
+                         $(".addFavorite").attr({"src":"./assets/img/heartPlus.png",
+                                         "data-name": response.drinks[0].idDrink,
+                                         "data-icon": "plus"});
+                    }; 
                     //adding drink's details to variable details...
                     var details = "<b>" + response.drinks[0].strDrink + "</b>" + "<br>"; 
                     details += "<b>Category: </b>" + response.drinks[0].strCategory + "<br>"; 
