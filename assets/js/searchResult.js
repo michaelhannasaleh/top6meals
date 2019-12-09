@@ -1,6 +1,6 @@
 $(document).ready(function () {
     
-
+     var favoritesArray = [];
      init();
 
      $("#searchBtn").on("click", function (){
@@ -9,9 +9,37 @@ $(document).ready(function () {
           sessionStorage.setItem("search", searchInput);
           init();
       });
+
+      $(document).on("click", ".addFavorite2", toAddFavorites);
+
+      function toAddFavorites(){
+          var addingFavorite = $(this).attr("data-name");
+          var iconType = $(this).attr("data-icon");
+          if (iconType === "plus"){
+               if (!favoritesArray.includes(addingFavorite)){
+                    favoritesArray.push(addingFavorite);
+                    localStorage.setItem("favorites", favoritesArray);
+                    $(this).attr({"src": "./assets/img/heartMinus.png",
+                                   "data-icon": "minus"});
+                    alert("The drink with id: " + addingFavorite + " has been added to your favorites.");              
+               };  
+          } else if (iconType === "minus"){
+               if (favoritesArray.includes(addingFavorite)){
+                    console.log(favoritesArray.indexOf(addingFavorite));
+                    favoritesArray.splice( favoritesArray.indexOf("addingFavorite"), 1 );
+                    console.log("saved array : " + favoritesArray);
+                    localStorage.setItem("favorites", favoritesArray);
+                    $(this).attr({"src": "./assets/img/heartPlus.png",
+                                    "data-icon": "plus"});
+                    alert("The drink with id: " + addingFavorite + " has been removed from your favorites.");
+               };
+          };  
+     };
      
      function init(){
-          //event.preventDefault();
+          if (localStorage.getItem("favorites")){
+               favoritesArray = localStorage.getItem("favorites").split(",");
+          };
           var searchInput = sessionStorage.getItem("search");
           console.log(searchInput);
           var queryURL = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchInput}`;
@@ -25,7 +53,7 @@ $(document).ready(function () {
                for (var i = 0; i < response.drinks.length; i++) {
                     var a = $("<div>");
                     a.addClass("container-drink d-inline-block");
-                    a.attr("data-name", response.drinks[i].idDrink);
+                    a.attr("data-name2", response.drinks[i].idDrink);
                     var b = $("<img>");
                     b.addClass("image");
                     b.attr("src", response.drinks[i].strDrinkThumb);
@@ -36,7 +64,7 @@ $(document).ready(function () {
                     var heart = $("<input>");
                     heart.addClass("addFavorite2");
                     heart.attr({"src":"./assets/img/heartPlus.png", "type":"image"});
-
+                    heart.attr({"data-name": response.drinks[i].idDrink, "data-icon": "plus"});
                     var details = "<b>" + response.drinks[i].strDrink + "</b>" + "<br>"; 
                     details += "<b>Category: </b>" + response.drinks[i].strCategory + "<br>"; 
                     details += "<b>Drink type: </b>" + response.drinks[i].strAlcoholic + "<br>";
@@ -92,7 +120,6 @@ $(document).ready(function () {
                     };
 
                     d.html(details);
-
                     a.append(b);
                     c.append(heart);
                     c.append(d);
@@ -102,12 +129,12 @@ $(document).ready(function () {
           });
      };  
      
-     $(document).on("click", ".container-drink", displayDrinkInfo);
+     // $(document).on("click", ".container-drink", displayDrinkInfo);
 
-     function displayDrinkInfo(){
-          var selectedDrink = $(this).attr("data-name");
-          alert(selectedDrink);
-     }
+     // function displayDrinkInfo(){
+     //      var selectedDrink = $(this).attr("data-name2");
+     //      alert(selectedDrink);
+     // }
 });
     
 

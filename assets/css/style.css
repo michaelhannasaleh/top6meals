@@ -65,7 +65,7 @@ body{
     position: absolute;
     width: 450px;
     left: 900px;
-    margin: 30px 20px 20px 30px;
+    margin: 5px 20px 20px 30px;
     
   }
   
@@ -129,15 +129,11 @@ body{
     background-color: bisque;
   }
 
-  #buttons {
-    margin-top: -50px;
-    margin-left: 150px;
-  }
-
   .addFavorite {
     position: absolute;
     top: -1%;
     margin: 20px 0 0 360px;
+    z-index: 2;
   }
 
   .addFavorite:hover {
@@ -147,16 +143,25 @@ body{
 
   .addFavorite2 {
     position: absolute;
-    top: -1%;
+    /* top: -1%; */
     width: 60px;
     height: 60px;
-    margin: 20px 0 0 320px;
+    padding: 2px;
+    margin: 20px 0 0 300px;
+    z-index: 2;
   }
 
   .addFavorite2:hover {
     width: 70px;
     height: 70px;
   }
+
+  #searchDiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
 
 
   

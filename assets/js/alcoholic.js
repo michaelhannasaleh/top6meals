@@ -1,5 +1,14 @@
 $(document).ready(function () {
 
+     var favorites = [];
+     init();
+
+     function init(){
+          if (localStorage.getItem("favorites")){
+               favorites = localStorage.getItem("favorites").split(",");;
+          }  
+     }
+     
      $("#searchBtn").on("click", function () {
           event.preventDefault();
           var searchInput = $("#searchInput").val();
@@ -9,6 +18,30 @@ $(document).ready(function () {
                window.location = "./searchResult.html";
           }
      });
+
+     $(".addFavorite").on("click", function(){
+          var addingFavorite = $(this).attr("data-name");
+          var iconType = $(this).attr("data-icon");
+          if (iconType === "plus"){
+               if (!favoritesArray.includes(addingFavorite)){
+                    favoritesArray.push(addingFavorite);
+                    localStorage.setItem("favorites", favoritesArray);
+                    $(this).attr({"src": "./assets/img/heartMinus.png",
+                                    "data-icon": "minus"});
+                    alert("The drink with id: " + addingFavorite + " has been added to your favorites.");              
+               };  
+          } else if (iconType === "minus"){
+               if (favoritesArray.includes(addingFavorite)){
+                    console.log(favoritesArray.indexOf(addingFavorite));
+                    favoritesArray.splice( favoritesArray.indexOf("addingFavorite"), 1 );
+                    console.log("saved array : " + favoritesArray);
+                    localStorage.setItem("favorites", favoritesArray);
+                    $(this).attr({"src": "./assets/img/heartPlus.png",
+                                    "data-icon": "plus"});
+                    alert("The drink with id: " + addingFavorite + " has been removed from your favorites.");
+               };
+          };   
+     })
 
      $("#getRandomBeverage").on("click", function (event) {
           var randomBeverage = $("#randomBeverageCard");
@@ -33,7 +66,9 @@ $(document).ready(function () {
                }).then(function (response) {
                     $(".image2").attr("src", response.drinks[0].strDrinkThumb);;
                     $(".drinkName").text(response.drinks[0].strDrink);
-                    $(".addFavorite").attr("data-name", response.drinks[0].idDrink);
+                    $(".addFavorite").attr({"src": "./assets/img/heartPlus.png",
+                                    "data-name": response.drinks[0].idDrink,
+                                    "data-icon": "plus"});
                     //adding drink's details to variable details...
                     var details = "<b>" + response.drinks[0].strDrink + "</b>" + "<br>"; 
                     details += "<b>Category: </b>" + response.drinks[0].strCategory + "<br>"; 
