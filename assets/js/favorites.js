@@ -6,8 +6,10 @@ $(document).ready(function () {
      $("#searchBtn").on("click", function (){
           event.preventDefault();
           var searchInput = $("#searchInput").val();
-          sessionStorage.setItem("search", searchInput);
-          window.location = "./searchResult.html";
+          if (searchInput !== "") {
+               sessionStorage.setItem("search", searchInput);
+               window.location = "./searchResult.html";
+          }
       });
 
       $(document).on("click", ".addFavorite2", toAddFavorites);
@@ -21,12 +23,12 @@ $(document).ready(function () {
                     localStorage.setItem("favorites", favoritesArray);
                     $(this).attr({"src": "./assets/img/heartMinus.png",
                                    "data-icon": "minus"});
-                    alert("The drink with id: " + addingFavorite + " has been added to your favorites.");              
+                    alert("The drink with id: " + addingFavorite + " has been added to your favorites.");
                };  
           } else if (iconType === "minus"){
                if (favoritesArray.includes(addingFavorite)){
                     console.log(favoritesArray.indexOf(addingFavorite));
-                    favoritesArray.splice( favoritesArray.indexOf("addingFavorite"), 1 );
+                    favoritesArray.splice( favoritesArray.indexOf(addingFavorite), 1 );
                     console.log("saved array : " + favoritesArray);
                     localStorage.setItem("favorites", favoritesArray);
                     $(this).attr({"src": "./assets/img/heartPlus.png",

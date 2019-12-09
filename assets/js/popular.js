@@ -6,8 +6,10 @@ $(document).ready(function () {
      $("#searchBtn").on("click", function (){
           event.preventDefault();
           var searchInput = $("#searchInput").val();
-          sessionStorage.setItem("search", searchInput);
-          window.location = "./searchResult.html";
+          if (searchInput !== "") {
+               sessionStorage.setItem("search", searchInput);
+               window.location = "./searchResult.html";
+          }
       });
 
       $(document).on("click", ".addFavorite2", toAddFavorites);
@@ -26,7 +28,7 @@ $(document).ready(function () {
           } else if (iconType === "minus"){
                if (favoritesArray.includes(addingFavorite)){
                     console.log(favoritesArray.indexOf(addingFavorite));
-                    favoritesArray.splice( favoritesArray.indexOf("addingFavorite"), 1 );
+                    favoritesArray.splice( favoritesArray.indexOf(addingFavorite), 1 );
                     console.log("saved array : " + favoritesArray);
                     localStorage.setItem("favorites", favoritesArray);
                     $(this).attr({"src": "./assets/img/heartPlus.png",
@@ -60,8 +62,13 @@ $(document).ready(function () {
                     d.addClass("text");
                     var heart = $("<input>");
                     heart.addClass("addFavorite2");
-                    heart.attr({"src":"./assets/img/heartPlus.png", "type":"image"});
-                    heart.attr({"data-name": response.drinks[0].idDrink, "data-icon": "plus"});
+                    if (favoritesArray.includes(response.drinks[0].idDrink)){
+                         heart.attr({"src":"./assets/img/heartMinus.png", "type":"image"});
+                         heart.attr({"data-name": response.drinks[0].idDrink, "data-icon": "minus"});
+                    }else{
+                         heart.attr({"src":"./assets/img/heartPlus.png", "type":"image"});
+                         heart.attr({"data-name": response.drinks[0].idDrink, "data-icon": "plus"});
+                    }     
                     var details = "<b>" + response.drinks[0].strDrink + "</b>" + "<br>"; 
                     details += "<b>Category: </b>" + response.drinks[0].strCategory + "<br>"; 
                     details += "<b>Drink type: </b>" + response.drinks[0].strAlcoholic + "<br>";
